@@ -3,14 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SynoFlash Quiz</title>
+  <title>Synoflash ⚡</title>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <h1>SynoFlash Quiz</h1>
-  <h2>Word: API</h2>
+  <!-- Header -->
+  <header>
+    <h1>Synoflash ⚡</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#features">Features</a>
+      <a href="#contact">Contact</a>
 
-  <div class="cards-container">
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+<div class="cards-container">
     <div class="card" data-correct="true">
       <div class="card-front">Application Programming Interface</div>
       <div class="card-back">A set of functions allowing apps to talk to each other.</div>
@@ -36,6 +45,26 @@
       <div class="card-back">Not correct.</div>
     </div>
   </div>
+  <p id="feedback"></p>
+</section>
+
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Got feedback or ideas? Let’s connect.</p>
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message"></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Synoflash Project ⚡🚀✨</p>
+  </footer>
 
   <script src="/js/script.js"></script>
 </body>
