@@ -197,3 +197,43 @@ nav a:hover {
 .master-btn:hover {
   background: #e69500;
 }
+#quiz {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.quiz-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.quiz-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  width: 220px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.quiz-card:hover {
+  transform: scale(1.05);
+  background: #fdf6ec;
+}
+
+.quiz-card.correct {
+  background: #a8e6a3; /* green */
+}
+
+.quiz-card.wrong {
+  background: #f28b82; /* red */
+}
+
+#feedback {
+  margin-top: 15px;
+  font-weight: bold;
+}
