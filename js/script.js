@@ -1,32 +1,59 @@
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("✅ Script is running"); // Debug check
-
-  const cards = document.querySelectorAll(".card");
+  let currentStage = 1;
   let chances = 2;
-  let answered = false;
 
-  cards.forEach(card => {
-    card.addEventListener("click", () => {
-      if (answered) return;
+  function setupStage(stageNumber, correctAnswer) {
+    const stage = document.getElementById(`stage${stageNumber}`);
+    const cards = stage.querySelectorAll(".card");
 
-      if (card.dataset.correct === "true") {
-        card.querySelector(".card-front").style.backgroundColor = "#4CAF50"; // green
-        card.querySelector(".card-front").style.color = "white";
-        alert("✅ Correct! Moving to next stage...");
-        answered = true;
-      } else {
-        card.querySelector(".card-front").style.backgroundColor = "#f44336"; // red
-        card.querySelector(".card-front").style.color = "white";
-        chances--;
+    cards.forEach(card => {
+      card.addEventListener("click", () => {
+        if (stage.dataset.completed === "true") return;
 
-        if (chances > 0) {
-          alert(`❌ Wrong! Try again. Chances left: ${chances}`);
+        const selected = card.querySelector(".front").innerText.trim();
+
+        if (selected === correctAnswer) {
+          card.classList.add("correct");
+          stage.dataset.completed = "true";
+
+          setTimeout(() => {
+            stage.style.display = "none";
+            currentStage++;
+            const nextStage = document.getElementById(`stage${currentStage}`);
+            if (nextStage) {
+              nextStage.style.display = "block";
+              chances = 2;
+            } else {
+              alert("🎉 Congrats! You mastered all the words!");
+            }
+          }, 1000);
         } else {
-          alert("❌ Wrong twice! Revealing correct answer...");
-          cards.forEach(c => c.classList.add("flipped"));
-          answered = true;
+          card.classList.add("wrong");
+          chances--;
+
+          if (chances <= 0) {
+            cards.forEach(c => c.classList.add("flip"));
+            stage.dataset.completed = "true";
+
+            setTimeout(() => {
+              stage.style.display = "none";
+              currentStage++;
+              const nextStage = document.getElementById(`stage${currentStage}`);
+              if (nextStage) {
+                nextStage.style.display = "block";
+                chances = 2;
+              } else {
+                alert("🎉 Congrats! You mastered all the words!");
+              }
+            }, 2000);
+          }
         }
-      }
+      });
     });
-  });
+  }
+
+  // Setup all stages with correct answers
+  setupStage(1, "Talkative");
+  setupStage(2, "Generous");
+  setupStage(3, "Precise");
 });
