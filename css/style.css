@@ -237,3 +237,12 @@ nav a:hover {
   margin-top: 15px;
   font-weight: bold;
 }
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards in a row */
+  grid-template-rows: repeat(2, auto);   /* 2 rows */
+  gap: 30px; /* space between cards */
+  margin-top: 40px;
+  justify-items: center; /* center horizontally */
+  align-items: center;   /* center vertically */
+}
