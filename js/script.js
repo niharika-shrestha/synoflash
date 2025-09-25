@@ -67,3 +67,36 @@ function nextQuestion() {
 
   document.getElementById("feedback").textContent = "";
 }
+ 
+// Select all option cards
+const optionCards = document.querySelectorAll(".option-card");
+
+// Correct answer text (must exactly match the card text)
+// Use the existing correctAnswer variable defined above
+
+// Track number of attempts
+let attempts = 0;
+
+optionCards.forEach(card => {
+  card.addEventListener("click", () => {
+    // Reset styles first
+    optionCards.forEach(c => c.style.backgroundColor = "");
+
+    if (card.innerText === correctAnswer) {
+      card.style.backgroundColor = "#4CAF50"; // Green for correct
+      alert("✅ Correct! Moving to next stage...");
+      // You can later add logic to load next question
+    } else {
+      card.style.backgroundColor = "#F44336"; // Red for wrong
+      attempts++;
+
+      if (attempts < 2) {
+        alert("❌ Wrong! Try again.");
+      } else {
+        alert("❌ Wrong again! The correct answer is: " + correctAnswer);
+        // Lock options after 2 attempts
+        optionCards.forEach(c => c.style.pointerEvents = "none");
+      }
+    }
+  });
+});
