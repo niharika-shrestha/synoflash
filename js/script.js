@@ -19,3 +19,13 @@ document.getElementById("darkModeBtn").addEventListener("click", function() {
     this.textContent = "🌙 Dark Mode";
   }
 });
+
+// Mark card as mastered
+document.querySelectorAll(".master-btn").forEach(btn => {
+  btn.addEventListener("click", function(e) {
+    e.stopPropagation(); // avoid re-flip
+    this.closest(".card").style.opacity = "0.5"; // faded effect
+    this.textContent = "Mastered ✔";
+    this.disabled = true;
+  });
+});

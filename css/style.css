@@ -123,64 +123,77 @@ nav a:hover {
   color: #faf3e0;            /* beige text */
   transform: translateY(-2px);
 }
-/* ====== Flip Cards ====== */
+
+/* Flashcard Section */
+#flashcards {
+  text-align: center;
+  padding: 60px 20px;
+}
+
 .card-container {
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 30px;
   flex-wrap: wrap;
-  margin-top: 20px;
 }
 
-.flip-card {
-  background: transparent;
-  width: 250px;
-  height: 200px;
+.card {
+  width: 200px;
+  height: 250px;
   perspective: 1000px;
+  cursor: pointer;
 }
 
-.flip-card-inner {
+.card-inner {
   position: relative;
   width: 100%;
   height: 100%;
-  text-align: center;
-  transition: transform 0.6s;
   transform-style: preserve-3d;
+  transition: transform 0.7s;
 }
 
-.flip-card:hover .flip-card-inner {
+.card:hover .card-inner {
   transform: rotateY(180deg);
 }
 
-.flip-card-front,
-.flip-card-back {
+.card-front,
+.card-back {
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 20px;
 }
 
-.flip-card-front {
+.card-front {
+  background: #fdf6ec;
+  color: #333;
+  font-weight: bold;
+}
+
+.card-back {
   background: #fff;
-  color: #2b2b2b;
-}
-
-.flip-card-back {
-  background: #2b2b2b;
-  color: #faf3e0;
+  color: #555;
   transform: rotateY(180deg);
+  flex-direction: column;
 }
 
-/* Dark Mode Adjustments */
-.dark-mode .flip-card-front {
-  background: #2c2c2c;
-  color: #faf3e0;
+.master-btn {
+  margin-top: 15px;
+  padding: 8px 15px;
+  border: none;
+  border-radius: 6px;
+  background: #ffb84d;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
-.dark-mode .flip-card-back {
-  background: #faf3e0;
-  color: #2b2b2b;
+.master-btn:hover {
+  background: #e69500;
 }
