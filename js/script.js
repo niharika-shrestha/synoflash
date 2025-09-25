@@ -29,74 +29,30 @@ document.querySelectorAll(".master-btn").forEach(btn => {
     this.disabled = true;
   });
 });
-let chances = 2; 
-let correctAnswer = "Application Programming Interface"; 
+document.addEventListener("DOMContentLoaded", () => {
+    const cards = document.querySelectorAll(".card-option");
+    let chances = 2; // user has 2 chances
 
-document.querySelectorAll(".quiz-card").forEach(card => {
-  card.addEventListener("click", function() {
-    if (this.textContent === correctAnswer) {
-      this.classList.add("correct");
-      document.getElementById("feedback").textContent = "✅ Correct! Moving to next stage...";
-      setTimeout(() => {
-        nextQuestion(); // load next question
-      }, 1500);
-    } else {
-      if (chances > 0) {
-        this.classList.add("wrong");
-        document.getElementById("feedback").textContent = `❌ Wrong! You have ${chances} chance(s) left.`;
-        chances--;
-      } else {
-        document.getElementById("feedback").textContent = "😢 Out of chances! Try again.";
-      }
-    }
-  });
-});
-
-// Example next question loader
-function nextQuestion() {
-  document.getElementById("question").textContent = "Which language runs in a web browser?";
-  let cards = document.querySelectorAll(".quiz-card");
-  let answers = ["Python", "C++", "Java", "JavaScript", "Ruby", "PHP"];
-  correctAnswer = "JavaScript";
-  chances = 2;
-
-  cards.forEach((card, index) => {
-    card.textContent = answers[index];
-    card.classList.remove("correct", "wrong");
-  });
-
-  document.getElementById("feedback").textContent = "";
-}
- 
-// Select all option cards
-const optionCards = document.querySelectorAll(".option-card");
-
-// Correct answer text (must exactly match the card text)
-// Use the existing correctAnswer variable defined above
-
-// Track number of attempts
-let attempts = 0;
-
-optionCards.forEach(card => {
-  card.addEventListener("click", () => {
-    // Reset styles first
-    optionCards.forEach(c => c.style.backgroundColor = "");
-
-    if (card.innerText === correctAnswer) {
-      card.style.backgroundColor = "#4CAF50"; // Green for correct
-      alert("✅ Correct! Moving to next stage...");
-      // You can later add logic to load next question
-    } else {
-      card.style.backgroundColor = "#F44336"; // Red for wrong
-      attempts++;
-
-      if (attempts < 2) {
-        alert("❌ Wrong! Try again.");
-      } else {
-        alert("❌ Wrong again! The correct answer is: " + correctAnswer);
-        // Lock options after 2 attempts
-        optionCards.forEach(c => c.style.pointerEvents = "none");
-      }
-    }
-  });
+    cards.forEach(card => {
+        card.addEventListener("click", () => {
+            if (card.dataset.correct === "true") {
+                card.style.backgroundColor = "#4CAF50"; // green
+                card.style.color = "white";
+                alert("✅ Correct! Moving to next stage soon...");
+                // TODO: you can add logic here to load next question
+            } else {
+                if (chances > 1) {
+                    chances--;
+                    card.style.backgroundColor = "#f44336"; // red
+                    card.style.color = "white";
+                    alert(`❌ Wrong! Try again. Chances left: ${chances}`);
+                } else {
+                    card.style.backgroundColor = "#f44336"; // final wrong
+                    card.style.color = "white";
+                    alert("❌ Wrong again. Game Over!");
+                    // Optionally reset game or lock question
+                }
+            }
+        });
+    });
 });
